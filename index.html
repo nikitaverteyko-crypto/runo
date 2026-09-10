@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Руно — аукцион племенных овец</title>
+<meta name="description" content="Аукцион племенных овец: производители, овцематки и молодняк напрямую от заводчиков, с бонитировкой, ветпаспортом и родословной.">
+<meta name="theme-color" content="#0D0E0B">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Руно — аукцион племенных овец">
+<meta property="og:description" content="4 260 лотов напрямую от хозяйств. Торги каждый четверг в 11:00 МСК.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230D0E0B%27/%3E%3Cpath d=%27M20.5 5.4 A11 11 0 1 0 26.6 21.3 L23.4 19.4 A7.4 7.4 0 1 1 19.3 8.7 Z%27 fill=%27%23D2A03A%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@1,500;1,600&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Unbounded:wght@400;600;800&display=swap">
+
+<style>
+:root{
+  --bg:#0D0E0B; --bg2:#121310; --surface:#1A1B15; --surface2:#22231B;
+  --line:#2C2E24; --line2:#3E4132;
+  --fg:#EFEDE2; --fg2:#ACA998; --fg3:#7A7868;
+  --accent:#D2A03A; --accent-hi:#EDBE5C; --accent-ink:#231903;
+  --elite:#9DB25F; --hot:#C9673B;
+  --gut:clamp(20px,5vw,72px);
+  --maxw:1320px;
+  --r:10px;
+  --f-disp:"Unbounded","Golos Text",system-ui,sans-serif;
+  --f-body:"Golos Text",system-ui,-apple-system,sans-serif;
+  --f-ser:"Cormorant",Georgia,serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#EAE7DC; --bg2:#F1EFE6; --surface:#F8F6EF; --surface2:#FFFDF7;
+    --line:#D6D1C1; --line2:#BEB8A5;
+    --fg:#15160F; --fg2:#54554A; --fg3:#83836F;
+    --accent:#8E6410; --accent-hi:#6F4D06; --accent-ink:#FFF6E2;
+    --elite:#57701F; --hot:#A0441F;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#EAE7DC; --bg2:#F1EFE6; --surface:#F8F6EF; --surface2:#FFFDF7;
+  --line:#D6D1C1; --line2:#BEB8A5;
+  --fg:#15160F; --fg2:#54554A; --fg3:#83836F;
+  --accent:#8E6410; --accent-hi:#6F4D06; --accent-ink:#FFF6E2;
+  --elite:#57701F; --hot:#A0441F;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--f-body); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{margin:0; font-family:var(--f-disp); font-weight:600; letter-spacing:-.02em; text-wrap:balance; line-height:1.05}
+p{margin:0}
+a{color:inherit; text-decoration:none}
+button{font:inherit; color:inherit; background:none; border:0; cursor:pointer}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+.wrap{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gut)}
+.eyebrow{font-family:var(--f-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--fg3)}
+.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- шапка ---------- */
+.top{position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--bg) 88%,transparent); backdrop-filter:blur(14px); border-bottom:1px solid var(--line)}
+.top__in{display:flex; align-items:center; gap:clamp(16px,3vw,40px); height:62px}
+.brand{display:flex; align-items:center; gap:9px; font-family:var(--f-disp); font-weight:800; font-size:18px; letter-spacing:.01em}
+.brand svg{width:26px; height:26px; color:var(--accent)}
+.nav{display:flex; gap:clamp(14px,2vw,26px); font-size:14px; color:var(--fg2); margin-right:auto}
+.nav a:hover{color:var(--fg)}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; height:38px; padding:0 18px; border-radius:99px; font-size:14px; font-weight:500; white-space:nowrap; transition:background .15s,border-color .15s,color .15s}
+.btn--ghost{color:var(--fg2)}
+.btn--ghost:hover{color:var(--fg)}
+.btn--line{border:1px solid var(--line2); color:var(--fg)}
+.btn--line:hover{border-color:var(--fg3); background:var(--surface)}
+.btn--solid{background:var(--accent); color:var(--accent-ink); font-weight:600}
+.btn--solid:hover{background:var(--accent-hi)}
+.btn--lg{height:46px; padding:0 24px; font-size:15px}
+@media(max-width:820px){.nav{display:none}}
+
+/* ---------- герой ---------- */
+.hero{padding:clamp(52px,8vw,104px) 0 clamp(36px,5vw,56px)}
+.hero__grid{display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); gap:clamp(32px,5vw,64px); align-items:center}
+@media(max-width:960px){.hero__grid{grid-template-columns:1fr}}
+h1{font-size:clamp(2.5rem,5.6vw,4.9rem); font-weight:800; letter-spacing:-.035em}
+h1 em{font-family:var(--f-ser); font-style:italic; font-weight:500; color:var(--accent); letter-spacing:-.01em; padding-inline:.04em}
+.hero__sub{margin-top:26px; max-width:52ch; color:var(--fg2); font-size:clamp(15px,1.5vw,18px)}
+.hero__sub b{color:var(--fg); font-weight:500; border-bottom:2px solid var(--accent); padding-bottom:1px}
+.hero__cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:32px}
+.hero__note{margin-top:20px; font-size:13px; color:var(--fg3)}
+
+/* ---------- панель торгов ---------- */
+.tick{border:1px solid var(--line2); border-radius:14px; background:var(--surface); overflow:hidden}
+.tick__bar{display:flex; align-items:center; gap:10px; padding:11px 16px; border-bottom:1px solid var(--line); background:var(--surface2)}
+.pulse{width:7px; height:7px; border-radius:50%; background:var(--hot); box-shadow:0 0 0 0 color-mix(in srgb,var(--hot) 70%,transparent); animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media(prefers-reduced-motion:reduce){.pulse{animation:none}}
+.tick__bar .mono{font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--fg2)}
+.tick__bar .right{margin-left:auto; color:var(--fg3)}
+.tick__main{display:flex; gap:16px; padding:18px 16px; align-items:flex-start}
+.tick__vis{flex:0 0 96px; height:82px; border-radius:8px; background:var(--bg2); border:1px solid var(--line); display:grid; place-items:center}
+.tick__vis svg{width:76px; height:66px}
+.tick h2{font-size:19px; font-weight:600; letter-spacing:-.01em}
+.tick__meta{margin-top:5px; font-size:13px; color:var(--fg2)}
+.bid{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; padding:0 16px 14px}
+.bid__now{font-family:var(--f-mono); font-weight:700; font-size:clamp(24px,3vw,32px); letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.bid__lbl{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--fg3); display:block; margin-bottom:2px}
+.clock{font-family:var(--f-mono); font-weight:700; font-size:20px; color:var(--hot); font-variant-numeric:tabular-nums}
+.hist{border-top:1px solid var(--line); font-family:var(--f-mono); font-size:12px}
+.hist div{display:grid; grid-template-columns:1fr auto auto; gap:14px; padding:8px 16px; color:var(--fg2); border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.hist div:last-child{border-bottom:0}
+.hist b{color:var(--fg); font-weight:500; font-variant-numeric:tabular-nums}
+.hist span{color:var(--fg3)}
+
+/* ---------- секция с лентой ---------- */
+.sec{padding:clamp(44px,6vw,76px) 0}
+.sec__head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap}
+.sec__head h2{font-size:clamp(1.3rem,2.2vw,1.75rem); font-weight:600}
+.sec__head .count{font-family:var(--f-mono); font-size:13px; color:var(--fg3)}
+.chips{display:flex; gap:8px; margin-top:20px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto; height:36px; padding:0 16px; border-radius:99px; border:1px solid transparent; color:var(--fg3); font-size:14px; transition:.15s}
+.chip:hover{color:var(--fg); background:var(--surface)}
+.chip[aria-pressed="true"]{background:var(--surface2); border-color:var(--line2); color:var(--fg)}
+.rail{display:flex; gap:14px; margin-top:22px; overflow-x:auto; scroll-snap-type:x proximity; padding:2px var(--gut) 14px; margin-inline:calc(var(--gut) * -1); scrollbar-width:thin}
+.rail::-webkit-scrollbar{height:6px}
+.rail::-webkit-scrollbar-thumb{background:var(--line2); border-radius:99px}
+
+/* ---------- карточка лота ---------- */
+.lot{flex:0 0 262px; scroll-snap-align:start; border:1px solid var(--line); border-radius:12px; background:var(--surface); overflow:hidden; display:flex; flex-direction:column; transition:border-color .15s,transform .15s}
+.lot:hover{border-color:var(--line2); transform:translateY(-2px)}
+.lot[hidden]{display:none}
+@media(prefers-reduced-motion:reduce){.lot:hover{transform:none}}
+.lot__vis{position:relative; height:146px; background:var(--bg2); display:grid; place-items:center; border-bottom:1px solid var(--line)}
+.lot__vis svg{width:132px; height:114px}
+.badge{position:absolute; top:10px; left:10px; font-family:var(--f-mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px; border-radius:5px; background:color-mix(in srgb,var(--elite) 22%,transparent); color:var(--elite); border:1px solid color-mix(in srgb,var(--elite) 40%,transparent)}
+.badge--hot{background:color-mix(in srgb,var(--hot) 20%,transparent); color:var(--hot); border-color:color-mix(in srgb,var(--hot) 42%,transparent)}
+.lot__body{padding:13px 14px 12px; display:flex; flex-direction:column; gap:10px; flex:1}
+.lot__name{font-family:var(--f-disp); font-size:15px; font-weight:600; letter-spacing:-.01em; display:flex; align-items:baseline; gap:7px}
+.lot__name span{font-family:var(--f-mono); font-size:11px; font-weight:400; color:var(--fg3)}
+.lot__breed{font-size:12.5px; color:var(--fg2); margin-top:-6px}
+.spec{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin:0; background:var(--line); border:1px solid var(--line); border-radius:7px; overflow:hidden}
+.spec>div{background:var(--surface); padding:7px 8px}
+.spec dt{font-family:var(--f-mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--fg3)}
+.spec dd{margin:2px 0 0; font-family:var(--f-mono); font-size:13px; font-weight:500; font-variant-numeric:tabular-nums}
+.lot__foot{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:auto}
+.price{font-family:var(--f-mono); font-weight:700; font-size:15px; font-variant-numeric:tabular-nums}
+.watch{display:inline-flex; align-items:center; gap:5px; font-family:var(--f-mono); font-size:12px; color:var(--fg3); padding:4px 7px; border-radius:6px; transition:.15s}
+.watch:hover{background:var(--surface2); color:var(--fg2)}
+.watch[aria-pressed="true"]{color:var(--accent)}
+.watch svg{width:13px; height:13px}
+.empty{padding:34px 0; color:var(--fg3); font-size:14px}
+
+/* ---------- хозяйства ---------- */
+.trust{border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bg2)}
+.trust__in{padding:clamp(30px,4vw,46px) 0}
+.trust p{max-width:60ch; color:var(--fg2); font-size:15px}
+.trust b{color:var(--fg); font-family:var(--f-mono); font-weight:700; font-variant-numeric:tabular-nums}
+.farms{display:flex; flex-wrap:wrap; gap:10px 26px; margin-top:22px; font-family:var(--f-mono); font-size:13px; color:var(--fg3); letter-spacing:.02em}
+.farms span{white-space:nowrap}
+
+/* ---------- как это работает ---------- */
+.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-top:26px}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface); padding:20px 18px 22px}
+.step__n{font-family:var(--f-mono); font-size:11px; color:var(--accent); letter-spacing:.14em}
+.step h3{margin-top:12px; font-size:16px; font-weight:600}
+.step p{margin-top:7px; font-size:13.5px; color:var(--fg2); line-height:1.55}
+.work{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(20px,3vw,32px); margin-top:26px}
+@media(max-width:900px){.work{grid-template-columns:1fr}}
+.doc{border:1px solid var(--line2); border-radius:12px; background:var(--surface); overflow:hidden}
+.doc__t{display:flex; align-items:center; gap:9px; padding:11px 16px; border-bottom:1px solid var(--line); background:var(--surface2); font-family:var(--f-mono); font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:var(--fg2)}
+.doc__t i{width:6px; height:6px; border-radius:50%; background:var(--elite)}
+.rows{font-family:var(--f-mono); font-size:12.5px}
+.rows>div{display:flex; justify-content:space-between; gap:16px; padding:9px 16px; border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent)}
+.rows>div:last-child{border-bottom:0}
+.rows dt,.rows .k{color:var(--fg3)}
+.rows dd,.rows .v{margin:0; color:var(--fg); font-variant-numeric:tabular-nums}
+.rows .ok{color:var(--elite)}
+.ped{padding:16px; font-family:var(--f-mono); font-size:12px; color:var(--fg2); line-height:2}
+.ped .lvl{padding-left:0}
+.ped .lvl2{padding-left:18px; color:var(--fg2)}
+.ped .lvl3{padding-left:36px; color:var(--fg3)}
+.ped b{color:var(--fg); font-weight:500}
+
+/* ---------- племзаводы ---------- */
+.tiles{display:grid; grid-template-columns:repeat(auto-fill,minmax(206px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden; margin-top:26px}
+.tile{background:var(--surface); padding:15px 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; transition:background .15s}
+.tile:hover{background:var(--surface2)}
+.tile b{font-weight:500; font-size:14px}
+.tile em{font-style:normal; font-family:var(--f-mono); font-size:11.5px; color:var(--fg3); font-variant-numeric:tabular-nums}
+.tiles__note{margin-top:16px; font-size:14px; color:var(--fg3); max-width:62ch}
+
+/* ---------- призыв ---------- */
+.cta{text-align:center; padding:clamp(56px,8vw,96px) 0; border-top:1px solid var(--line)}
+.cta h2{font-size:clamp(1.7rem,4vw,3rem); font-weight:800; letter-spacing:-.03em}
+.cta h2 em{font-family:var(--f-ser); font-style:italic; font-weight:500; color:var(--accent)}
+.cta p{margin-top:16px; color:var(--fg2); font-size:15px}
+.cta__row{display:flex; gap:12px; justify-content:center; margin-top:28px; flex-wrap:wrap}
+
+/* ---------- вопросы ---------- */
+.faq{border-top:1px solid var(--line); padding:clamp(44px,6vw,72px) 0}
+.faq__list{margin-top:24px; border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none; cursor:pointer; padding:18px 0; display:flex; align-items:center; gap:16px; font-size:16px; font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+"; margin-left:auto; font-family:var(--f-mono); font-size:18px; color:var(--fg3)}
+details[open] summary::after{content:"−"; color:var(--accent)}
+summary:hover{color:var(--accent)}
+details p{padding:0 40px 20px 0; max-width:72ch; color:var(--fg2); font-size:14.5px}
+
+/* ---------- подвал ---------- */
+footer{border-top:1px solid var(--line); background:var(--bg2); padding:44px 0 30px}
+.foot{display:grid; grid-template-columns:1.6fr repeat(3,1fr); gap:28px}
+@media(max-width:760px){.foot{grid-template-columns:1fr 1fr}}
+.foot h4{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.15em; text-transform:uppercase; color:var(--fg3); font-weight:400}
+.foot ul{list-style:none; margin:12px 0 0; padding:0; display:grid; gap:8px; font-size:14px; color:var(--fg2)}
+.foot ul a:hover{color:var(--fg)}
+.foot__brand p{margin-top:12px; font-size:13.5px; color:var(--fg3); max-width:34ch}
+.copy{margin-top:36px; padding-top:18px; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:12.5px; color:var(--fg3); font-family:var(--f-mono)}
+</style>
+</head>
+<body>
+<!-- Портрет барана: одна фигура, перекрашиваемая через --fleece / --horn -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ram" viewBox="0 0 120 104">
+    <g fill="var(--fleece,#C79A55)">
+      <circle cx="47" cy="26" r="15"/><circle cx="66" cy="19" r="13"/>
+      <circle cx="81" cy="24" r="10"/><circle cx="35" cy="38" r="13"/>
+      <circle cx="54" cy="37" r="13"/><circle cx="30" cy="53" r="10"/>
+    </g>
+    <path d="M64 30 C80 24, 98 33, 106 49 C112 61, 111 73, 103 79 C93 87, 74 84, 64 71 C56 61, 56 39, 64 30 Z" fill="var(--face,#9E7434)"/>
+    <path d="M62 57 C51 59, 44 65, 42 72 C49 75, 58 70, 65 63 Z" fill="var(--face,#9E7434)"/>
+    <path d="M67.3 23.5 A30 30 0 1 0 84 67 L75.3 62 A20 20 0 1 1 64.2 33 Z" fill="var(--horn,#E3C489)"/>
+    <circle cx="91" cy="52" r="3.4" fill="#1B1206"/>
+    <circle cx="106" cy="66" r="2.2" fill="#1B1206" opacity=".7"/>
+  </symbol>
+  <symbol id="eye" viewBox="0 0 16 16">
+    <path d="M1 8s2.6-4.6 7-4.6S15 8 15 8s-2.6 4.6-7 4.6S1 8 1 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <circle cx="8" cy="8" r="2.1" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap top__in">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M20.5 5.4 A11 11 0 1 0 26.6 21.3 L23.4 19.4 A7.4 7.4 0 1 1 19.3 8.7 Z" fill="currentColor"/></svg>
+      РУНО
+    </a>
+    <nav class="nav">
+      <a href="#lots">Лоты</a><a href="#breeds">Породы</a><a href="#how">Как купить</a>
+      <a href="#breeders">Племзаводы</a><a href="#faq">Вопросы</a>
+    </nav>
+    <a class="btn btn--ghost" href="#">Войти</a>
+    <a class="btn btn--solid" href="#">Регистрация</a>
+  </div>
+</header>
+
+<main>
+  <!-- =============== ГЕРОЙ =============== -->
+  <section class="wrap hero">
+    <div class="hero__grid">
+      <div>
+        <h1>Живой каталог <em>племенных</em> баранов</h1>
+        <p class="hero__sub"><b>4 260</b> производителей, овцематок и молодняка — напрямую от заводчиков. Каждый лот с бонитировкой, ветпаспортом и родословной до третьего колена.</p>
+        <div class="hero__cta">
+          <a class="btn btn--solid btn--lg" href="#lots">Смотреть лоты</a>
+          <a class="btn btn--line btn--lg" href="#how">Выставить поголовье</a>
+        </div>
+        <p class="hero__note">Торги идут каждый четверг в 11:00 МСК. Участие для покупателя бесплатно.</p>
+      </div>
+
+      <!-- Панель живых торгов: главный жест страницы -->
+      <div class="tick">
+        <div class="tick__bar">
+          <span class="pulse" aria-hidden="true"></span>
+          <span class="mono">торги идут</span>
+          <span class="mono right">лот 47 · зал 2</span>
+        </div>
+        <div class="tick__main">
+          <div class="tick__vis" style="--fleece:#C9973F;--face:#9A6E2E;--horn:#EBD196">
+            <svg aria-hidden="true"><use href="#ram"/></svg>
+          </div>
+          <div>
+            <h2>Тарзан</h2>
+            <p class="tick__meta">Эдильбаевская · 3 года · 142 кг · класс элита</p>
+            <p class="tick__meta" style="color:var(--fg3)">Племзавод «Степной Ветер», Саратовская обл.</p>
+          </div>
+        </div>
+        <div class="bid">
+          <div>
+            <span class="bid__lbl">текущая ставка</span>
+            <span class="bid__now" id="bid">198 000 ₽</span>
+          </div>
+          <div style="text-align:right">
+            <span class="bid__lbl">до закрытия</span>
+            <span class="clock" id="clock">00:00:00</span>
+          </div>
+        </div>
+        <div class="hist">
+          <div><span>КФХ «Заря»</span><b>198 000 ₽</b><span>11:42</span></div>
+          <div><span>Агро-Дон</span><b>193 000 ₽</b><span>11:39</span></div>
+          <div><span>КФХ «Заря»</span><b>188 000 ₽</b><span>11:35</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== ЛЕНТА: ПРОИЗВОДИТЕЛИ =============== -->
+  <section class="sec" id="lots">
+    <div class="wrap">
+      <div class="sec__head" id="breeds">
+        <h2>Производители</h2>
+        <span class="count">1 840 лотов</span>
+      </div>
+      <div class="chips" role="group" aria-label="Фильтр по породе">
+        <button class="chip" data-f="all" aria-pressed="true">Все породы</button>
+        <button class="chip" data-f="edil" aria-pressed="false">Эдильбаевская</button>
+        <button class="chip" data-f="gis" aria-pressed="false">Гиссарская</button>
+        <button class="chip" data-f="rom" aria-pressed="false">Романовская</button>
+        <button class="chip" data-f="mer" aria-pressed="false">Меринос</button>
+        <button class="chip" data-f="dor" aria-pressed="false">Дорпер</button>
+        <button class="chip" data-f="kat" aria-pressed="false">Катумская</button>
+      </div>
+
+      <div class="rail" id="rail1">
+        <article class="lot" data-breed="edil">
+          <div class="lot__vis" style="--fleece:#C9973F;--face:#9A6E2E;--horn:#EBD196">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge badge--hot">торги</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Тарзан <span>№ 4712</span></div>
+            <p class="lot__breed">Эдильбаевская · 3 года</p>
+            <dl class="spec"><div><dt>масса</dt><dd>142 кг</dd></div><div><dt>привес</dt><dd>310 г</dd></div><div><dt>класс</dt><dd>элита</dd></div></dl>
+            <div class="lot__foot"><span class="price">198 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>412</span></button></div>
+          </div>
+        </article>
+
+        <article class="lot" data-breed="gis">
+          <div class="lot__vis" style="--fleece:#8A6B44;--face:#5F482C;--horn:#D9BE85">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">элита</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Курдюк <span>№ 3908</span></div>
+            <p class="lot__breed">Гиссарская · 4 года</p>
+            <dl class="spec"><div><dt>масса</dt><dd>168 кг</dd></div><div><dt>привес</dt><dd>355 г</dd></div><div><dt>класс</dt><dd>элита</dd></div></dl>
+            <div class="lot__foot"><span class="price">265 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>780</span></button></div>
+          </div>
+        </article>
+
+        <article class="lot" data-breed="rom">
+          <div class="lot__vis" style="--fleece:#6E6A63;--face:#33322F;--horn:#C9BCA0">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">элита</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Буран <span>№ 5140</span></div>
+            <p class="lot__breed">Романовская · 2 года</p>
+            <dl class="spec"><div><dt>масса</dt><dd>94 кг</dd></div><div><dt>настриг</dt><dd>3,4 кг</dd></div><div><dt>плодов.</dt><dd>270 %</dd></div></dl>
+            <div class="lot__foot"><span class="price">86 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>1,2k</span></button></div>
+          </div>
+        </article>
+
+        <article class="lot" data-breed="mer">
+          <div class="lot__vis" style="--fleece:#E4D6BA;--face:#B9A87F;--horn:#F0DFB4">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">элита</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Атлас <span>№ 2274</span></div>
+            <p class="lot__breed">Меринос · 3 года</p>
+            <dl class="spec"><div><dt>масса</dt><dd>118 кг</dd></div><div><dt>настриг</dt><dd>9,8 кг</dd></div><div><dt>тонина</dt><dd>19 мкм</dd></div></dl>
+            <div class="lot__foot"><span class="price">310 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>2,4k</span></button></div>
+          </div>
+        </article>
+
+        <article class="lot" data-breed="dor">
+          <div class="lot__vis" style="--fleece:#EDE7DA;--face:#3B3A36;--horn:#D6CBB2">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">1 класс</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Норд <span>№ 6031</span></div>
+            <p class="lot__breed">Дорпер · 2 года</p>
+            <dl class="spec"><div><dt>масса</dt><dd>124 кг</dd></div><div><dt>привес</dt><dd>340 г</dd></div><div><dt>убойн.</dt><dd>56 %</dd></div></dl>
+            <div class="lot__foot"><span class="price">175 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>640</span></button></div>
+          </div>
+        </article>
+
+        <article class="lot" data-breed="kat">
+          <div class="lot__vis" style="--fleece:#C4B49A;--face:#8E7E63;--horn:#E6D6AE">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge badge--hot">торги</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Ладожский <span>№ 1187</span></div>
+            <p class="lot__breed">Катумская · 3 года</p>
+            <dl class="spec"><div><dt>масса</dt><dd>110 кг</dd></div><div><dt>привес</dt><dd>295 г</dd></div><div><dt>класс</dt><dd>элита</dd></div></dl>
+            <div class="lot__foot"><span class="price">142 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>388</span></button></div>
+          </div>
+        </article>
+
+        <article class="lot" data-breed="edil">
+          <div class="lot__vis" style="--fleece:#A87C3C;--face:#6E4F22;--horn:#E0C489">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">элита</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Хан <span>№ 4790</span></div>
+            <p class="lot__breed">Эдильбаевская · 5 лет</p>
+            <dl class="spec"><div><dt>масса</dt><dd>155 кг</dd></div><div><dt>привес</dt><dd>325 г</dd></div><div><dt>потомство</dt><dd>84 гол.</dd></div></dl>
+            <div class="lot__foot"><span class="price">240 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>966</span></button></div>
+          </div>
+        </article>
+
+        <article class="lot" data-breed="mer">
+          <div class="lot__vis" style="--fleece:#D8C7A6;--face:#A7936C;--horn:#F2E2B8">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">1 класс</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Сугроб <span>№ 2301</span></div>
+            <p class="lot__breed">Меринос · 4 года</p>
+            <dl class="spec"><div><dt>масса</dt><dd>105 кг</dd></div><div><dt>настриг</dt><dd>8,2 кг</dd></div><div><dt>тонина</dt><dd>21 мкм</dd></div></dl>
+            <div class="lot__foot"><span class="price">196 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>511</span></button></div>
+          </div>
+        </article>
+      </div>
+      <p class="empty" id="empty1" hidden>По этой породе сейчас нет открытых лотов. Ближайший завоз — четверг.</p>
+    </div>
+  </section>
+
+  <!-- =============== ЛЕНТА: МАТКИ И МОЛОДНЯК =============== -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec__head">
+        <h2>Овцематки и молодняк</h2>
+        <span class="count">2 420 лотов</span>
+      </div>
+      <div class="rail">
+        <article class="lot">
+          <div class="lot__vis" style="--fleece:#D5C4A3;--face:#A08C66;--horn:#D5C4A3">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">партия 20 гол.</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Ярки, окот весна <span>партия</span></div>
+            <p class="lot__breed">Романовская · 8–10 мес</p>
+            <dl class="spec"><div><dt>ср. масса</dt><dd>46 кг</dd></div><div><dt>голов</dt><dd>20</dd></div><div><dt>за голову</dt><dd>18 000 ₽</dd></div></dl>
+            <div class="lot__foot"><span class="price">360 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>274</span></button></div>
+          </div>
+        </article>
+        <article class="lot">
+          <div class="lot__vis" style="--fleece:#B99C74;--face:#7E6642;--horn:#E2CFA4">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">суягные</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Овцематки <span>партия</span></div>
+            <p class="lot__breed">Эдильбаевская · 2–3 года</p>
+            <dl class="spec"><div><dt>ср. масса</dt><dd>78 кг</dd></div><div><dt>голов</dt><dd>12</dd></div><div><dt>срок</dt><dd>3 мес</dd></div></dl>
+            <div class="lot__foot"><span class="price">420 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>190</span></button></div>
+          </div>
+        </article>
+        <article class="lot">
+          <div class="lot__vis" style="--fleece:#8F8880;--face:#4A4640;--horn:#C6B99C">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">отбивка</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Баранчики <span>партия</span></div>
+            <p class="lot__breed">Романовская · 4 мес</p>
+            <dl class="spec"><div><dt>ср. масса</dt><dd>32 кг</dd></div><div><dt>голов</dt><dd>35</dd></div><div><dt>за голову</dt><dd>11 500 ₽</dd></div></dl>
+            <div class="lot__foot"><span class="price">402 500 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>333</span></button></div>
+          </div>
+        </article>
+        <article class="lot">
+          <div class="lot__vis" style="--fleece:#E7DCC4;--face:#B6A681;--horn:#F0E3C0">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">генетика</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Семя, Атлас <span>№ 2274</span></div>
+            <p class="lot__breed">Меринос · доза 0,25 мл</p>
+            <dl class="spec"><div><dt>доз</dt><dd>50</dd></div><div><dt>подвиж.</dt><dd>72 %</dd></div><div><dt>за дозу</dt><dd>2 400 ₽</dd></div></dl>
+            <div class="lot__foot"><span class="price">120 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>1,1k</span></button></div>
+          </div>
+        </article>
+        <article class="lot">
+          <div class="lot__vis" style="--fleece:#CBB48D;--face:#93794F;--horn:#E8D4A6">
+            <svg aria-hidden="true"><use href="#ram"/></svg><span class="badge">партия 40 гол.</span>
+          </div>
+          <div class="lot__body">
+            <div class="lot__name">Ярки на племя <span>партия</span></div>
+            <p class="lot__breed">Катумская · 10 мес</p>
+            <dl class="spec"><div><dt>ср. масса</dt><dd>52 кг</dd></div><div><dt>голов</dt><dd>40</dd></div><div><dt>за голову</dt><dd>21 000 ₽</dd></div></dl>
+            <div class="lot__foot"><span class="price">840 000 ₽</span><button class="watch" aria-pressed="false"><svg aria-hidden="true"><use href="#eye"/></svg><span>408</span></button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== ХОЗЯЙСТВА =============== -->
+  <section class="trust">
+    <div class="wrap trust__in">
+      <p>Через «Руно» покупают <b>12 480</b> хозяйств — от личных подворий на три головы до агрохолдингов с отарой в двадцать тысяч.</p>
+      <div class="farms">
+        <span>Заря-Агро</span><span>Степной Ветер</span><span>Племзавод Восход</span><span>Курганское Руно</span>
+        <span>Алтай-Меринос</span><span>Дон-Овцевод</span><span>Тавр-Юг</span><span>Белая Отара</span>
+        <span>Калмык-Агро</span><span>Северная Ферма</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== КАК КУПИТЬ =============== -->
+  <section class="sec wrap" id="how">
+    <div class="sec__head"><h2>Как проходит покупка</h2><span class="count">от заявки до выгрузки — 5–9 дней</span></div>
+
+    <!-- Нумерация здесь оправдана: это настоящая последовательность шагов -->
+    <div class="steps">
+      <div class="step"><div class="step__n">ШАГ 01</div><h3>Выбираете лот</h3><p>Карточка, промеры, видео с прогона и результаты последней бонитировки.</p></div>
+      <div class="step"><div class="step__n">ШАГ 02</div><h3>Проверяете</h3><p>Ветпаспорт, номер чипа, родословная до третьего колена — всё открыто до ставки.</p></div>
+      <div class="step"><div class="step__n">ШАГ 03</div><h3>Торгуетесь</h3><p>Ставка онлайн, шаг 5 000 ₽. Продление на 2 минуты при ставке в последнюю минуту.</p></div>
+      <div class="step"><div class="step__n">ШАГ 04</div><h3>Забираете</h3><p>Скотовоз с вентиляцией и поилкой, ветсвидетельство в пути. Или самовывоз с фермы.</p></div>
+    </div>
+
+    <div class="work">
+      <div class="doc">
+        <div class="doc__t"><i></i>Ветпаспорт · лот 47</div>
+        <div class="rows">
+          <div><span class="k">чип / бирка</span><span class="v">RU 643 0047 12</span></div>
+          <div><span class="k">бруцеллёз</span><span class="v ok">отрицательно · 14.08.26</span></div>
+          <div><span class="k">хламидиоз</span><span class="v ok">отрицательно · 14.08.26</span></div>
+          <div><span class="k">вакцинация</span><span class="v ok">полный курс</span></div>
+          <div><span class="k">обработка от гельминтов</span><span class="v">02.09.26</span></div>
+          <div><span class="k">карантин</span><span class="v ok">пройден, 30 дней</span></div>
+        </div>
+      </div>
+      <div class="doc">
+        <div class="doc__t"><i></i>Родословная · Тарзан № 4712</div>
+        <div class="ped">
+          <div class="lvl"><b>Тарзан</b> № 4712 · элита · 142 кг</div>
+          <div class="lvl2">отец — <b>Беркут</b> № 3155 · элита · 161 кг</div>
+          <div class="lvl3">дед — Батыр № 2044 · элита · 158 кг</div>
+          <div class="lvl3">бабка — Сая № 2109 · 1 класс</div>
+          <div class="lvl2">мать — <b>Айна</b> № 3702 · элита · 88 кг</div>
+          <div class="lvl3">дед — Тимур № 2517 · элита</div>
+          <div class="lvl3">бабка — Кара № 2688 · элита · двойня</div>
+          <div class="lvl" style="margin-top:8px;color:var(--fg3)">коэффициент инбридинга — 0,4 %</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== ПЛЕМЗАВОДЫ =============== -->
+  <section class="sec wrap" id="breeders" style="padding-top:0">
+    <div class="sec__head"><h2>Племзаводы и хозяйства</h2><span class="count">у каждого лота есть имя и адрес</span></div>
+    <div class="tiles">
+      <a class="tile" href="#"><b>Степной Ветер</b><em>142 лота</em></a>
+      <a class="tile" href="#"><b>Заря-Агро</b><em>118 лотов</em></a>
+      <a class="tile" href="#"><b>Курганское Руно</b><em>96 лотов</em></a>
+      <a class="tile" href="#"><b>Алтай-Меринос</b><em>91 лот</em></a>
+      <a class="tile" href="#"><b>Дон-Овцевод</b><em>84 лота</em></a>
+      <a class="tile" href="#"><b>Племзавод Восход</b><em>77 лотов</em></a>
+      <a class="tile" href="#"><b>Белая Отара</b><em>68 лотов</em></a>
+      <a class="tile" href="#"><b>Тавр-Юг</b><em>61 лот</em></a>
+      <a class="tile" href="#"><b>Калмык-Агро</b><em>54 лота</em></a>
+      <a class="tile" href="#"><b>Северная Ферма</b><em>49 лотов</em></a>
+      <a class="tile" href="#"><b>Ковыль</b><em>43 лота</em></a>
+      <a class="tile" href="#"><b>Чабан и сыновья</b><em>38 лотов</em></a>
+    </div>
+    <p class="tiles__note">…и ещё 610 хозяйств, которые выставляют поголовье сами — без перекупщиков и без «звоните, договоримся».</p>
+  </section>
+
+  <!-- =============== ПРИЗЫВ =============== -->
+  <section class="cta">
+    <div class="wrap">
+      <h2>Следующий торг — <em>четверг</em>, 11:00</h2>
+      <p>Зарегистрируйтесь заранее: доступ к ставкам открывается после проверки хозяйства, обычно за час.</p>
+      <div class="cta__row">
+        <a class="btn btn--solid btn--lg" href="#">Зарегистрироваться</a>
+        <a class="btn btn--line btn--lg" href="#lots">Смотреть каталог</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== ВОПРОСЫ =============== -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="sec__head"><h2>Вопросы и ответы</h2></div>
+      <div class="faq__list">
+        <details open><summary>Что такое «Руно»?</summary><p>Аукционная площадка племенных овец. Хозяйства выставляют животных сами, с полным пакетом документов; мы проверяем документы, ведём торги и организуем перевозку.</p></details>
+        <details><summary>Сколько стоит участие?</summary><p>Покупателю — бесплатно, включая доступ к архиву торгов. Продавец платит 3 % от суммы сделки, но не больше 25 000 ₽ за лот. Никаких платежей до продажи.</p></details>
+        <details><summary>Чем это отличается от обычного рынка скота?</summary><p>Тем, что цена видна всем и складывается из ставок, а не из разговора у загона. К каждому лоту приложены бонитировка, ветпаспорт и родословная, и все они открыты до того, как вы сделаете первую ставку.</p></details>
+        <details><summary>Кто отвечает за здоровье животного?</summary><p>Хозяйство-продавец. Если в течение 14 дней после выгрузки ветврач найдёт заболевание, не указанное в паспорте, сделка отменяется, деньги возвращаются, обратную перевозку оплачиваем мы.</p></details>
+        <details><summary>Как проверить родословную?</summary><p>Каждый номер бирки связан с записью в племенной книге хозяйства. Нажмите на предка в родословной — откроются его промеры, класс и потомство. При спорах делаем ДНК-тест на подтверждение происхождения.</p></details>
+        <details><summary>Можно ли выставить своё поголовье?</summary><p>Да, если хозяйство имеет племенной статус или проходит бонитировку у аттестованного специалиста. Заявка, выезд эксперта, съёмка — обычно неделя до первого лота.</p></details>
+        <details><summary>Как считается доставка?</summary><p>По километру от фермы до вашего адреса и по количеству голов: скотовоз на 40 голов идёт дешевле в пересчёте, чем прицеп на пять. Точную сумму видно в карточке до ставки.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="foot__brand">
+        <div class="brand">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M20.5 5.4 A11 11 0 1 0 26.6 21.3 L23.4 19.4 A7.4 7.4 0 1 1 19.3 8.7 Z" fill="currentColor"/></svg>
+          РУНО
+        </div>
+        <p>Аукцион племенных овец. Каждый лот — с именем, номером бирки и адресом фермы.</p>
+      </div>
+      <div><h4>Каталог</h4><ul><li><a href="#lots">Производители</a></li><li><a href="#lots">Овцематки</a></li><li><a href="#lots">Молодняк</a></li><li><a href="#lots">Генетика</a></li></ul></div>
+      <div><h4>Продавцам</h4><ul><li><a href="#how">Как выставить лот</a></li><li><a href="#how">Бонитировка</a></li><li><a href="#">Комиссия</a></li><li><a href="#">Договор</a></li></ul></div>
+      <div><h4>Помощь</h4><ul><li><a href="#faq">Вопросы</a></li><li><a href="#">Доставка</a></li><li><a href="#">Веттребования</a></li><li><a href="#">Связаться</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 «Руно»</span><span>вымышленная площадка · демонстрация интерфейса · <a href="scene.html" style="border-bottom:1px solid var(--line2)">иллюстрация</a></span></div>
+  </div>
+</footer>
+
+<script>
+// Фильтр породы: чипы переключают видимость карточек в первой ленте
+var chips = document.querySelectorAll('.chip');
+var rail1 = document.getElementById('rail1');
+var empty1 = document.getElementById('empty1');
+chips.forEach(function (chip) {
+  chip.addEventListener('click', function () {
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+    var f = chip.dataset.f, shown = 0;
+    rail1.querySelectorAll('.lot').forEach(function (lot) {
+      var ok = f === 'all' || lot.dataset.breed === f;
+      lot.hidden = !ok;
+      if (ok) shown++;
+    });
+    empty1.hidden = shown > 0;
+    rail1.scrollTo({ left: 0, behavior: 'smooth' });
+  });
+});
+
+// «Слежу за лотом»: локальное состояние карточки
+document.querySelectorAll('.watch').forEach(function (btn) {
+  var label = btn.querySelector('span');
+  var base = label.textContent;
+  btn.addEventListener('click', function () {
+    var on = btn.getAttribute('aria-pressed') !== 'true';
+    btn.setAttribute('aria-pressed', String(on));
+    label.textContent = on ? 'слежу' : base;
+  });
+});
+
+// Обратный отсчёт до ближайшего четверга, 11:00 МСК
+var clock = document.getElementById('clock');
+function nextThursday() {
+  var now = new Date();
+  var msk = new Date(now.getTime() + (now.getTimezoneOffset() + 180) * 60000);
+  var d = new Date(msk);
+  d.setHours(11, 0, 0, 0);
+  var shift = (4 - d.getDay() + 7) % 7;
+  if (shift === 0 && msk > d) shift = 7;
+  d.setDate(d.getDate() + shift);
+  return d - msk;
+}
+function tick() {
+  var ms = nextThursday();
+  var s = Math.max(0, Math.floor(ms / 1000));
+  var dd = Math.floor(s / 86400), hh = Math.floor(s % 86400 / 3600),
+      mm = Math.floor(s % 3600 / 60), ss = s % 60;
+  var pad = function (n) { return String(n).padStart(2, '0'); };
+  clock.textContent = (dd > 0 ? dd + 'д ' : '') + pad(hh) + ':' + pad(mm) + ':' + pad(ss);
+}
+tick();
+setInterval(tick, 1000);
+</script>
+</body>
+</html>
